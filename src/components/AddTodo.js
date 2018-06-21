@@ -37,9 +37,6 @@ class AddTodo extends Component {
     return (
       <div>
         <br />
-        <Link className="btn btn-warning" to="/">
-          Back
-        </Link>
         <h3>Add TODO List</h3>
         <form onSubmit={this.handleSubmit}>
           Titel:<input
@@ -66,7 +63,11 @@ class AddTodo extends Component {
             // value={this.state.date}
           />
           <br />
-          <input type="submit" className="btn btn-success" value="ADD" />
+          <div className="button-add-back"> <Link className="btn btn-warning" to="/">
+          BACK
+        </Link>
+          <input type="submit" className="btn btn-success" value="SAVE" />
+          </div>
         </form>
         <div>
           <hr />

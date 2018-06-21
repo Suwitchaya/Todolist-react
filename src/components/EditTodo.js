@@ -2,21 +2,39 @@ import React, { Component } from 'react'
 // import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { ADD_TODOLIST } from '../store/actions/actionTypes'
+import { EDIT_TODOLIST } from '../store/actions/actionTypes'
 import List from './List'
 
 class EditTodo extends Component {
   constructor (props) {
     super(props)
+    
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
-
     this.state = {
       title: '',
       description: '',
       date: '',
-      time: ''
+      time: '',
+      id:''
     }
+  }
+  componentWillMount (){
+      this.getTodoList();
+  }
+  getTodoList(){
+    let todoId = this.props.match.params.id;
+    let list = this.props.todos.find((item) => {
+        return item.id === (+todoId)
+      })
+
+      this.setState({
+          title:list.title,
+          description:list.description,
+          date:list.date,
+          time:list.time,
+          id: (+todoId)
+      })
   }
 
   handleChange (e) {
@@ -29,7 +47,7 @@ class EditTodo extends Component {
   handleSubmit (e) {
     e.preventDefault()
 
-    this.props.addTodos(this.state)
+    this.props.editTodos(this.state)
     console.log('this.props.todos: ', this.props.todos)
     console.log('this.state: ', this.state)
   }
@@ -37,9 +55,6 @@ class EditTodo extends Component {
     return (
       <div>
         <br />
-        <Link className="btn btn-warning" to="/">
-          Back
-        </Link>
         <h3>Add TODO List</h3>
         <form onSubmit={this.handleSubmit}>
           Titel:<input
@@ -47,7 +62,7 @@ class EditTodo extends Component {
             onChange={this.handleChange}
             name="title"
             className="form-control"
-            // value={this.state.title}
+            value={this.state.title}
           />
           <br />
           Description:<input
@@ -55,7 +70,7 @@ class EditTodo extends Component {
             name="description"
             onChange={this.handleChange}
             className="form-control"
-            // value={this.state.description}
+            value={this.state.description}
           />
           <br />
           Date:<input
@@ -63,12 +78,17 @@ class EditTodo extends Component {
             onChange={this.handleChange}
             name="date"
             className="form-control"
-            // value={this.state.date}
+            value={this.state.date}
           />
           <br />
-          <input type="submit" className="btn btn-success" value="ADD" />
+         <div className="button-add-back"> <Link className="btn btn-warning" to="/">
+          BACK
+        </Link>
+          <input type="submit" className="btn btn-success" value="SAVE" />
+          </div>
         </form>
         <div>
+
           <hr />
           {<List data={this.props.todos} />}
         </div>
@@ -85,8 +105,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addTodos: (payload) => {
-      dispatch({ type: ADD_TODOLIST, payload })
+    editTodos: (payload) => {
+      dispatch({ type: EDIT_TODOLIST, payload })
     }
   }
 }

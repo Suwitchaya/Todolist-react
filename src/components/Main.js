@@ -8,8 +8,8 @@ const Main = () => (
   <main>
     <Switch>
       <Route exact path="/" component={MainList} />
-      <Route exact path="/add" component={AddTodo} />
-      <Route exact path="/edit/:id" component={EditTodo} />
+      <Route exact path="/todo/add" component={AddTodo} />
+      <Route exact path="/todo/edit/:id" component={EditTodo} />
     </Switch>
   </main>
 )

@@ -1,13 +1,16 @@
 import React from 'react'
-// import Checkbox from '@material-ui/core/Checkbox'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+
 import { DELETE_TODOLIST } from '../store/actions/actionTypes'
+
 const mapStateToProps = (state, ownProps) => {
   return {
     todos: [ state ],
     title: state.title
   }
-}
+} 
+
 const mapDispatchToProps = (dispatch) => {
   console.log('dispatch: ', dispatch)
   return {
@@ -16,6 +19,7 @@ const mapDispatchToProps = (dispatch) => {
     }
   }
 }
+
 class ListItem extends React.Component {
   deleteList = (e) => {
     e.preventDefault()
@@ -37,9 +41,9 @@ class ListItem extends React.Component {
           </li>
         </div>
         <div className="col-md-2">
-          <button onClick={(e) => this.deleteContact(e, this.props.item.id)} className="btn btn-info">
-            Edit
-          </button>
+          <Link className="btn btn-info" to={`/todo/edit/${this.props.item.id}`}>
+          Edit
+        </Link>
           <button onClick={this.deleteList} id={this.props.item.id} className="btn btn-danger">
             Remove
           </button>

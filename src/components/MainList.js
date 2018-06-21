@@ -19,7 +19,7 @@ class ManiList extends Component {
       this.setState({ selected: this.props.dataStore })
     } else {
       let selected = this.props.dataStore.filter((item) => {
-        return item.completed === parseInt(select)
+        return item.completed === (+select)
       })
       console.log('select: ', select)
       this.setState({ selected: selected })
@@ -42,7 +42,7 @@ class ManiList extends Component {
             </select>
           </div>
           <div className="col-md-6 add-todo-button">
-            <Link to="/add">
+            <Link to="/todo/add" >
               <button type="button" className="btn btn-primary ">
                 <span className="glyphicon glyphicon-plus-sign" /> Add
               </button>

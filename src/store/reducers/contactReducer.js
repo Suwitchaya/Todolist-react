@@ -34,7 +34,19 @@ const reducer = (state = initialState, action) => {
       
     case actionTypes.DELETE_TODOLIST:
       return state.filter((i) => i.id !== action.payload)
-      break
+
+    case actionTypes.EDIT_TODOLIST:
+    const editState = state.find((i) => i.id === action.payload.id)
+    return [
+      ...editState,
+      Object.assign({}, action.payload)
+    ]
+      // return {...editState, 
+      //   [state.title]: action.payload.title,
+      //   [state.description]: action.payload.description,
+      //   [state.date]: action.payload.date,
+      //   [state.time]: action.payload.time}
+
     default:
       break
   }
