@@ -19,7 +19,7 @@ const mapDispatchToProps = (dispatch) => {
 class ListItem extends React.Component {
   deleteList = (e) => {
     e.preventDefault()
-    this.props.deleteTodoList(e.target.id)
+    this.props.deleteTodoList(+e.target.id)
     console.log('e.target.id: ', e.target.id)
   }
 

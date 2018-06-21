@@ -10,6 +10,7 @@ const initialState = {
 }
 
 const reducer = (state = initialState, action) => {
+  console.log('state: ', state)
   // console.log('action: ', action)
   switch (action.type) {
     case actionTypes.ADD_TODOLIST:
@@ -24,9 +25,10 @@ const reducer = (state = initialState, action) => {
       }
     case actionTypes.DELETE_TODOLIST:
       console.log('action.payload=>>>', action.payload)
-      // return{
+      const x = [ state ].filter((i) => i.id !== action.payload)
+      console.log('x: ', x)
+      return x
 
-      // }
       break
     default:
       break
