@@ -1,13 +1,13 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
-// import Meetups from './Meetups'
-// import About from './About'
-// import MeetupDetails from './MeetupDetails'
+
 import AddTodo from './AddTodo'
+import MainList from './MainList'
 
 const Main = () => (
   <main>
     <Switch>
+      <Route exact path="/" component={MainList} />
       <Route exact path="/add" component={AddTodo} />
     </Switch>
   </main>

@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-import Main from './components/Main'
-import { Link } from 'react-router-dom'
-import Nav from './components/Nav'
-import Select from './components/Select'
-import List from './components/List'
 import { connect } from 'react-redux'
+
+import './App.css'
+import Main from './components/Main'
+import Nav from './components/Nav'
 
 class App extends Component {
   render () {
@@ -13,15 +12,6 @@ class App extends Component {
         <h1>TODO List Application</h1>
         <Nav />
         <Main />
-        <hr />
-        <Select data="xx" />
-        <hr />
-        {<List data={this.props.todos} />}
-        <div className="fixed-action-btn">
-          <Link to="/add">
-            <i className="fa fa-plus" /> Add Meetup
-          </Link>
-        </div>
       </div>
     )
   }

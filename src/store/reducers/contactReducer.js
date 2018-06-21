@@ -1,12 +1,12 @@
 import * as actionTypes from '../actions/actionTypes'
 
 const initialState = {
-  id: 1,
+  id: 2,
   title: 'testtitle',
   description: 'desdes',
   date: '2017/12/12',
   time: '13:30',
-  completed: 1
+  completed: 0
 }
 
 const reducer = (state = initialState, action) => {
@@ -22,7 +22,7 @@ const reducer = (state = initialState, action) => {
         time: action.payload.time,
         completed: 0
       }
-    case actionTypes.CHENGE_COMPLETED:
+    case actionTypes.DELETE_TODOLIST:
       console.log('action.payload=>>>', action.payload)
       // return{
 
