@@ -58,7 +58,7 @@ class ManiList extends Component {
 }
 const mapStateToProps = (state, ownProps) => {
   return {
-    dataStore: [ state ],
+    dataStore: state ,
     title: state.title
   }
 }

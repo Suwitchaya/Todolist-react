@@ -1,11 +1,12 @@
 import React from 'react'
 import ListItem from './ListItem'
 
-const ListTodo = (props) => {
+const List = (props) => {
+  console.log("List:",props);
   const item = props.data.map((item) => {
     return <ListItem key={item.id} item={item} />
   })
   return <ui className="list-group">{item}</ui>
 }
 
-export default ListTodo
+export default List

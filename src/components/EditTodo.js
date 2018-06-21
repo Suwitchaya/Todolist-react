@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { ADD_TODOLIST } from '../store/actions/actionTypes'
 import List from './List'
 
-class AddTodo extends Component {
+class EditTodo extends Component {
   constructor (props) {
     super(props)
     this.handleChange = this.handleChange.bind(this)
@@ -90,4 +90,4 @@ const mapDispatchToProps = (dispatch) => {
     }
   }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(AddTodo)
+export default connect(mapStateToProps, mapDispatchToProps)(EditTodo)

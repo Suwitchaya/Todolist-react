@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-// import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 class Navbar extends Component {
   render () {
@@ -9,9 +9,6 @@ class Navbar extends Component {
           <div className="nav-wrapper">
             <a href="/" className="brand-logo center">
               Todo List
-            </a>
-            <a data-activates="main-menu" className="button-collapse show-on-large">
-              <i className="fa fa-bars" />
             </a>
           </div>
         </nav>
