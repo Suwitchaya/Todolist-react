@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { HomeIcon1 } from './icon'
+import { Link } from 'react-router-dom'
 
 class Navbar extends Component {
   render () {
@@ -6,9 +8,9 @@ class Navbar extends Component {
       <div>
         <nav className="blue darken-3">
           <div className="nav-wrapper">
-            <a href="/" className="brand-logo center">
-              Todo List
-            </a>
+            <Link to="/" className="brand-logo center">
+              <h1>TODO List Application</h1>
+            </Link>
           </div>
         </nav>
       </div>

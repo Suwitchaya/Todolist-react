@@ -12,9 +12,7 @@ const store = createStore(rootReducer, /* preloadedState, */ composeEnhancers(ap
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <App />
   </Provider>,
   document.getElementById('root')
 )

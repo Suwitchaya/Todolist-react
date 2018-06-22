@@ -63,10 +63,14 @@ class AddTodo extends Component {
             // value={this.state.date}
           />
           <br />
-          <div className="button-add-back"> <Link className="btn btn-warning" to="/">
-          BACK
-        </Link>
-          <input type="submit" className="btn btn-success" value="SAVE" />
+          <div className="button-add-back">
+            {/* <Link className="btn btn-warning" to="/">
+              BACK
+            </Link> */}
+            {/* <a href="/" className="brand-logo center">
+              Todo List
+            </a> */}
+            <input type="submit" className="btn btn-success" value="SAVE" />
           </div>
         </form>
         <div>
@@ -79,7 +83,7 @@ class AddTodo extends Component {
 }
 const mapStateToProps = (state, ownProps) => {
   return {
-    todos:  state ,
+    todos: state,
     title: state.title
   }
 }
