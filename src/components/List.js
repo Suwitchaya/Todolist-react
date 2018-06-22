@@ -2,7 +2,6 @@ import React from 'react'
 import ListItem from './ListItem'
 
 const List = (props) => {
-  console.log("List:",props);
   const item = props.data.map((item) => {
     return <ListItem key={item.id} item={item} />
   })

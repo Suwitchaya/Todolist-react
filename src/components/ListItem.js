@@ -16,7 +16,6 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  console.log('dispatch: ', dispatch)
   return {
     deleteTodoList: (payload) => {
       dispatch({ type: DELETE_TODOLIST, payload })
@@ -39,25 +38,22 @@ class ListItem extends React.Component {
   deleteList = (e) => {
     e.preventDefault()
     this.props.deleteTodoList(e.target.id)
-    console.log('e.target.id: ', e.target.id)
   }
 
   _Chacked = (e) => {
-    console.log('_Chacked', e.target.value)
     let check = this.props.todos.find((item) => {
       return item.id === e.target.value
     })
-    console.log('check: ', check)
+
     // this.setState({
     //   id: check.id,
     //   completed: 1
     // })
-    console.log('check.id: ', check.id)
+
     this.props.checkedTodoList({
       id: check.id,
       completed: 1
     })
-    console.log('this.state: ', this.state)
   }
   render () {
     const checkCompleted = this.props.item.completed

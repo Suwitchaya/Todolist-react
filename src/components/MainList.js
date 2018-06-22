@@ -16,28 +16,23 @@ class ManiList extends Component {
     chenge: 0
   }
   handleChange = (event) => {
-    console.log('handleChange', event.target.value)
     let select = event.target.value
     if (select === 'All') {
-      console.log(select)
       this.setState({ selected: this.props.dataStore })
     } else {
       let selected = this.props.dataStore.filter((item) => {
         return item.completed === +select
       })
-      console.log('select: ', select)
+
       this.setState({
         selected: selected,
         chenge: 1
       })
-      console.log('selected: ', selected)
-      console.log('this.state: ', this.state)
     }
   }
 
   render () {
     const changeSelect = +this.state.chenge
-    console.log('changeSelect: ', changeSelect)
 
     const styles = {
       background: '#ea9b9b',

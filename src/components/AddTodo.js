@@ -18,7 +18,6 @@ class AddTodo extends Component {
       title: '',
       description: '',
       date: new Date(),
-      time: '',
       completed: 0
     }
   }
@@ -27,21 +26,18 @@ class AddTodo extends Component {
     this.setState({
       [e.target.name]: e.target.value
     })
-    console.log('[e.target.name]: e.target.value: ', [ e.target.name ], e.target.value)
   }
 
   handleSubmit (e) {
     e.preventDefault()
     if (this.state.title !== '') {
       this.props.addTodos(this.state)
-      console.log('this.props.todos: ', this.props.todos)
-      console.log('this.state: ', this.state)
+
       this.props.history.push('/')
     }
   }
   _onChange = (date) => {
     this.setState({ date })
-    console.log('date: ', date)
   }
   render () {
     return (
@@ -50,31 +46,15 @@ class AddTodo extends Component {
         <h3>Add TODO List</h3>
         <hr />
         <form onSubmit={this.handleSubmit} className="from-input">
-          Titel:<input
-            type="text"
-            onChange={this.handleChange}
-            name="title"
-            className="input-add"
-            // value={this.state.title}
-          />
+          Titel:<input type="text" onChange={this.handleChange} name="title" className="input-add" />
           <br />
-          Description:<input
-            type="text"
-            name="description"
-            onChange={this.handleChange}
-            className="input-add"
-            // value={this.state.description}
-          />
+          Description:<input type="text" name="description" onChange={this.handleChange} className="input-add" />
           <br />
           <div className="date-div">
             <div className="date-time">
               Date:
               <DatePicker className="input-add date" onChange={this._onChange} value={this.state.date} name="date" />
             </div>
-            {/* <div className="date-time">
-              Date:
-              <DatePicker className="input-add date" onChange={this._onChange} value={this.state.date} name="date" />
-            </div> */}
           </div>
           <br />
           <div className="button-add-back">

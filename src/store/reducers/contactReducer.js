@@ -3,11 +3,9 @@ import * as actionTypes from '../actions/actionTypes'
 const initialState = JSON.parse(localStorage.getItem('todo')) || []
 
 const reducer = (state = initialState, action) => {
-  console.log('state: ', state)
-  // console.log('action: ', action)
+  //
   switch (action.type) {
     case actionTypes.ADD_TODOLIST:
-      console.log('action.payload=>>>', action.payload)
       const { payload } = action
 
       const newPayload = {

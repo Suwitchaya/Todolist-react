@@ -17,8 +17,8 @@ class EditTodo extends Component {
       title: '',
       description: '',
       date: '',
-      time: '',
-      id: ''
+      id: '',
+      completed: ''
     }
   }
   componentWillMount () {
@@ -34,8 +34,8 @@ class EditTodo extends Component {
       title: list.title,
       description: list.description,
       date: new Date(),
-      time: list.time,
-      id: todoId
+      id: todoId,
+      completed: list.completed
     })
   }
 
