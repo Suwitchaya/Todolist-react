@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import { ADD_TODOLIST } from '../store/actions/actionTypes'
 import '../css/add.css'
 import List from './List'
+import '../css/list.css'
 
 class AddTodo extends Component {
   constructor (props) {
@@ -31,11 +32,12 @@ class AddTodo extends Component {
 
   handleSubmit (e) {
     e.preventDefault()
-
-    this.props.addTodos(this.state)
-    console.log('this.props.todos: ', this.props.todos)
-    console.log('this.state: ', this.state)
-    this.props.history.push('/')
+    if (this.state.title !== '') {
+      this.props.addTodos(this.state)
+      console.log('this.props.todos: ', this.props.todos)
+      console.log('this.state: ', this.state)
+      this.props.history.push('/')
+    }
   }
   _onChange = (date) => {
     this.setState({ date })
@@ -76,7 +78,7 @@ class AddTodo extends Component {
           </div>
           <br />
           <div className="button-add-back">
-            <input type="submit" className="btn btn-success" value="SAVE" />
+            <input type="submit" className="btn btn-add" value="SAVE" />
           </div>
         </form>
         <div />

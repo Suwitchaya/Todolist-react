@@ -2,9 +2,12 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Moment from 'react-moment'
+import Icon from 'react-icons-kit'
+import * as icomoon from 'react-icons-kit/icomoon'
 
 import { DELETE_TODOLIST, CHENGE_COMPLETED } from '../store/actions/actionTypes'
 import '../css/checkbok.css'
+import '../css/list.css'
 const mapStateToProps = (state, ownProps) => {
   return {
     todos: state,
@@ -69,17 +72,21 @@ class ListItem extends React.Component {
         </div>
         <div className="col-md-8">
           <li className="list-group-item clearfix" key={this.props.item.id}>
-            <h2>{this.props.item.title}</h2> <br />
-            <p>{this.props.item.description}</p> <br />
-            <Moment format="DD/MM/YYYY">{this.props.item.date}</Moment>
+            <div className="list-title">{this.props.item.title}</div>
+            <div className="list-detail">
+              <span className="list-des">{this.props.item.description}</span>
+              <span className="list-date">
+                <Moment format="DD/MM/YYYY">{this.props.item.date}</Moment>
+              </span>
+            </div>
           </li>
         </div>
         <div className="col-md-2">
-          <Link className="btn btn-info" to={`/todo/edit/${this.props.item.id}`}>
-            Edit
+          <Link className="btn btn-edit button-list" to={`/todo/edit/${this.props.item.id}`}>
+            <Icon className="icon-list" icon={icomoon.pencil} />
           </Link>
-          <button onClick={this.deleteList} id={this.props.item.id} className="btn btn-danger">
-            Remove
+          <button onClick={this.deleteList} id={this.props.item.id} className="btn btn-delete">
+            <Icon className="icon-list" icon={icomoon.bin} />
           </button>
         </div>
       </div>

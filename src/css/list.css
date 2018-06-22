@@ -1,0 +1,41 @@
+.list-todo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.list-date {
+  font-size: 10px;
+  color: #9a9696;
+}
+.list-detail {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.list-title {
+  font-size: 18px;
+}
+.list-des {
+  color: #7b7777;
+}
+.button-list {
+  margin-right: 10px;
+}
+.btn-edit {
+  background: #f0ce69;
+  color: #fff;
+}
+.btn-delete {
+  background: #ea9363;
+  color: #fff;
+}
+.icon-list {
+  padding-top: 5px;
+}
+.btn-add-todo {
+  background: #53bdb7;
+  color: #fff;
+  width: 100px;
+  height: 40px;
+}

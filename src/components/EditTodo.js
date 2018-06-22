@@ -88,7 +88,7 @@ class EditTodo extends Component {
           </div>
           <br />
           <div className="button-add-back">
-            <input type="submit" className="btn btn-success" value="SAVE" />
+            <input type="submit" className="btn btn-add" value="SAVE" />
           </div>
         </form>
         <div>

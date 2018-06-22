@@ -43,3 +43,10 @@
   display: flex;
   flex-direction: column;
 }
+.btn-add {
+  background: #53bdb7;
+  color: #fff;
+  width: 80px;
+  height: 30px;
+  margin: 0;
+}

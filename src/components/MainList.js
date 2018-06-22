@@ -6,7 +6,7 @@ import Icon from 'react-icons-kit'
 import * as icomoon from 'react-icons-kit/icomoon'
 
 import List from './List'
-
+import '../css/list.css'
 class ManiList extends Component {
   state = {
     completed: 2,
@@ -44,7 +44,8 @@ class ManiList extends Component {
       width: '30px',
       height: '30px',
       borderRadius: '50px',
-      position: 'relative'
+      position: 'relative',
+      color: '#fff'
     }
 
     const styles2 = {
@@ -60,9 +61,9 @@ class ManiList extends Component {
 
     return (
       <div>
-        <div className="row">
+        <div className="row select-list">
           <div className="form-group col-md-6" style={row}>
-            <label>Select list TODO :</label>
+            <span>Select list TODO :</span>
             <select className="form-control select" onChange={this.handleChange}>
               <option value="All" selected>
                 All
@@ -77,7 +78,7 @@ class ManiList extends Component {
           </div>
           <div className="col-md-6 add-todo-button">
             <Link to="/todo/add">
-              <button type="button" className="btn btn-primary ">
+              <button type="button" className="btn btn-add-todo">
                 <span className="glyphicon glyphicon-plus-sign" /> Add
               </button>
             </Link>
