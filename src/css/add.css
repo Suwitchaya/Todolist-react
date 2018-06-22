@@ -1,0 +1,45 @@
+.add-todo {
+  margin: 0 auto;
+  width: 520px;
+}
+.input-add {
+  display: block;
+  width: 500px;
+  height: 34px;
+  padding: .5rem .75rem;
+  font-size: 1rem;
+  line-height: 1.25;
+  color: #464a4c;
+  background-color: #fff;
+  background-image: none;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, .15);
+  border-radius: .25rem;
+  margin: unset !important;
+  font-size: 15px;
+}
+.date {
+  display: flex;
+  width: 250px;
+  justify-content: flex-end;
+  height: 45px;
+}
+.react-date-picker__button {
+  border: none !important;
+}
+.react-date-picker .react-date-picker--closed .react-date-picker--enabled .input-add .date {
+  display: flex;
+}
+
+.from-input {
+  width: 520px;
+}
+.date-div {
+  display: flex;
+  justify-content: space-between;
+}
+.date-time {
+  display: flex;
+  flex-direction: column;
+}

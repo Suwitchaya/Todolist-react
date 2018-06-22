@@ -3,12 +3,14 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { EDIT_TODOLIST } from '../store/actions/actionTypes'
+import '../css/add.css'
 import List from './List'
+import DatePicker from 'react-date-picker'
 
 class EditTodo extends Component {
   constructor (props) {
     super(props)
-    
+
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.state = {
@@ -16,25 +18,25 @@ class EditTodo extends Component {
       description: '',
       date: '',
       time: '',
-      id:''
+      id: ''
     }
   }
-  componentWillMount (){
-      this.getTodoList();
+  componentWillMount () {
+    this.getTodoList()
   }
-  getTodoList(){
-    let todoId = this.props.match.params.id;
+  getTodoList () {
+    let todoId = this.props.match.params.id
     let list = this.props.todos.find((item) => {
-        return item.id === (+todoId)
-      })
+      return item.id === todoId
+    })
 
-      this.setState({
-          title:list.title,
-          description:list.description,
-          date:list.date,
-          time:list.time,
-          id: (+todoId)
-      })
+    this.setState({
+      title: list.title,
+      description: list.description,
+      date: new Date(),
+      time: list.time,
+      id: todoId
+    })
   }
 
   handleChange (e) {
@@ -43,7 +45,10 @@ class EditTodo extends Component {
     })
     console.log('[e.target.name]: e.target.value: ', [ e.target.name ], e.target.value)
   }
-
+  _onChange = (date) => {
+    this.setState({ date })
+    console.log('date: ', date)
+  }
   handleSubmit (e) {
     e.preventDefault()
 
@@ -53,15 +58,16 @@ class EditTodo extends Component {
   }
   render () {
     return (
-      <div>
+      <div className="add-todo">
         <br />
-        <h3>Add TODO List</h3>
-        <form onSubmit={this.handleSubmit}>
+        <h3>Edit TODO List</h3>
+        <hr />
+        <form onSubmit={this.handleSubmit} className="from-input">
           Titel:<input
             type="text"
             onChange={this.handleChange}
             name="title"
-            className="form-control"
+            className="input-add"
             value={this.state.title}
           />
           <br />
@@ -69,28 +75,23 @@ class EditTodo extends Component {
             type="text"
             name="description"
             onChange={this.handleChange}
-            className="form-control"
+            className="input-add"
             value={this.state.description}
           />
           <br />
-          Date:<input
-            type="text"
-            onChange={this.handleChange}
-            name="date"
-            className="form-control"
-            value={this.state.date}
-          />
+          <div className="date-div">
+            <div className="date-time">
+              Date:
+              <DatePicker className="input-add date" onChange={this._onChange} value={this.state.date} name="time" />
+            </div>
+          </div>
           <br />
-         <div className="button-add-back"> <Link className="btn btn-warning" to="/">
-          BACK
-        </Link>
-          <input type="submit" className="btn btn-success" value="SAVE" />
+          <div className="button-add-back">
+            <input type="submit" className="btn btn-success" value="SAVE" />
           </div>
         </form>
         <div>
-
           <hr />
-          {<List data={this.props.todos} />}
         </div>
       </div>
     )
@@ -98,7 +99,7 @@ class EditTodo extends Component {
 }
 const mapStateToProps = (state, ownProps) => {
   return {
-    todos:  state ,
+    todos: state,
     title: state.title
   }
 }

@@ -3,7 +3,9 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { ADD_TODOLIST } from '../store/actions/actionTypes'
+import '../css/add.css'
 import List from './List'
+import DatePicker from 'react-date-picker'
 
 class AddTodo extends Component {
   constructor (props) {
@@ -14,7 +16,7 @@ class AddTodo extends Component {
     this.state = {
       title: '',
       description: '',
-      date: '',
+      date: new Date(),
       time: ''
     }
   }
@@ -33,17 +35,22 @@ class AddTodo extends Component {
     console.log('this.props.todos: ', this.props.todos)
     console.log('this.state: ', this.state)
   }
+  _onChange = (date) => {
+    this.setState({ date })
+    console.log('date: ', date)
+  }
   render () {
     return (
-      <div>
+      <div className="add-todo">
         <br />
         <h3>Add TODO List</h3>
-        <form onSubmit={this.handleSubmit}>
+        <hr />
+        <form onSubmit={this.handleSubmit} className="from-input">
           Titel:<input
             type="text"
             onChange={this.handleChange}
             name="title"
-            className="form-control"
+            className="input-add"
             // value={this.state.title}
           />
           <br />
@@ -51,32 +58,26 @@ class AddTodo extends Component {
             type="text"
             name="description"
             onChange={this.handleChange}
-            className="form-control"
+            className="input-add"
             // value={this.state.description}
           />
           <br />
-          Date:<input
-            type="text"
-            onChange={this.handleChange}
-            name="date"
-            className="form-control"
-            // value={this.state.date}
-          />
+          <div className="date-div">
+            <div className="date-time">
+              Date:
+              <DatePicker className="input-add date" onChange={this._onChange} value={this.state.date} name="date" />
+            </div>
+            {/* <div className="date-time">
+              Date:
+              <DatePicker className="input-add date" onChange={this._onChange} value={this.state.date} name="date" />
+            </div> */}
+          </div>
           <br />
           <div className="button-add-back">
-            {/* <Link className="btn btn-warning" to="/">
-              BACK
-            </Link> */}
-            {/* <a href="/" className="brand-logo center">
-              Todo List
-            </a> */}
             <input type="submit" className="btn btn-success" value="SAVE" />
           </div>
         </form>
-        <div>
-          <hr />
-          {<List data={this.props.todos} />}
-        </div>
+        <div />
       </div>
     )
   }

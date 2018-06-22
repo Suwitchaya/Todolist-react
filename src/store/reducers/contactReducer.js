@@ -2,21 +2,22 @@ import * as actionTypes from '../actions/actionTypes'
 
 const initialState = [
   {
-  id: 1,
-  title: 'testtitle',
-  description: 'desdes',
-  date: '2017/12/12',
-  time: '13:30',
-  completed: 0
-},
-{
-  id: 2,
-  title: 'หกดเพกดหปอผททมใฝพพพพ',
-  description: 'หหหหหหหหหหห',
-  date: '2017/12/12',
-  time: '13:30',
-  completed: 1
-}]
+    id: 'x1',
+    title: 'testtitle',
+    description: 'desdes',
+    date: 'Wed Jun 20 2018 00:00:00 GMT+0700',
+    time: '13:30',
+    completed: 0
+  },
+  {
+    id: 'x2',
+    title: 'หกดเพกดหปอผททมใฝพพพพ',
+    description: 'หหหหหหหหหหห',
+    date: 'Wed Jun 17 2018 00:00:00 GMT+0700',
+    time: '13:30',
+    completed: 1
+  }
+]
 
 const reducer = (state = initialState, action) => {
   console.log('state: ', state)
@@ -24,29 +25,40 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.ADD_TODOLIST:
       console.log('action.payload=>>>', action.payload)
-      return  [...state, Object.assign({}, action.payload)];
-        // ...state,
-        // title: action.payload.title,
-        // description: action.payload.description,
-        // date: action.payload.date,
-        // time: action.payload.time,
-        // completed: 0
-      
+      const { payload } = action
+
+      const newPayload = {
+        ...payload,
+        id: Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
+        completed: 0
+      }
+
+      const result = [ ...state, Object.assign({}, newPayload) ]
+      localStorage.setItem('todo', JSON.stringify(result))
+      return result
+
     case actionTypes.DELETE_TODOLIST:
-      return state.filter((i) => i.id !== action.payload)
+      const resultDelete = state.filter((i) => i.id !== action.payload)
+      localStorage.setItem('todo', JSON.stringify(resultDelete))
+      return resultDelete
 
     case actionTypes.EDIT_TODOLIST:
-    const editState = state.find((i) => i.id === action.payload.id)
-    return [
-      ...editState,
-      Object.assign({}, action.payload)
-    ]
-      // return {...editState, 
-      //   [state.title]: action.payload.title,
-      //   [state.description]: action.payload.description,
-      //   [state.date]: action.payload.date,
-      //   [state.time]: action.payload.time}
-
+      const editState = state.find((i) => i.id === action.payload.id)
+      const resultEdit = [ ...editState, Object.assign({}, action.payload) ]
+      localStorage.setItem('todo', JSON.stringify(resultEdit))
+      return
+    case actionTypes.CHENGE_COMPLETED:
+      console.log('action.payload=>>>', action.payload)
+      const editComp = state.findIndex((i) => i.id === action.payload.id)
+      console.log('editComp: ', editComp)
+      return [
+        ...state.slice(0, editComp),
+        {
+          ...state[editComp],
+          completed: action.payload.completed
+        },
+        ...state.slice(editComp + 1)
+      ]
     default:
       break
   }
