@@ -1,23 +1,6 @@
 import * as actionTypes from '../actions/actionTypes'
 
-const initialState = [
-  {
-    id: 'x1',
-    title: 'testtitle',
-    description: 'desdes',
-    date: 'Wed Jun 20 2018 00:00:00 GMT+0700',
-    time: '13:30',
-    completed: 0
-  },
-  {
-    id: 'x2',
-    title: 'หกดเพกดหปอผททมใฝพพพพ',
-    description: 'หหหหหหหหหหห',
-    date: 'Wed Jun 17 2018 00:00:00 GMT+0700',
-    time: '13:30',
-    completed: 1
-  }
-]
+const initialState = JSON.parse(localStorage.getItem('todo')) || []
 
 const reducer = (state = initialState, action) => {
   console.log('state: ', state)
@@ -29,8 +12,7 @@ const reducer = (state = initialState, action) => {
 
       const newPayload = {
         ...payload,
-        id: Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
-        completed: 0
+        id: Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
       }
 
       const result = [ ...state, Object.assign({}, newPayload) ]
@@ -43,15 +25,20 @@ const reducer = (state = initialState, action) => {
       return resultDelete
 
     case actionTypes.EDIT_TODOLIST:
-      const editState = state.find((i) => i.id === action.payload.id)
-      const resultEdit = [ ...editState, Object.assign({}, action.payload) ]
+      const editState = state.findIndex((i) => i.id === action.payload.id)
+      const resultEdit = [
+        ...state.slice(0, editState),
+        {
+          ...action.payload
+        },
+        ...state.slice(editState + 1)
+      ]
       localStorage.setItem('todo', JSON.stringify(resultEdit))
-      return
+      return resultEdit
+
     case actionTypes.CHENGE_COMPLETED:
-      console.log('action.payload=>>>', action.payload)
       const editComp = state.findIndex((i) => i.id === action.payload.id)
-      console.log('editComp: ', editComp)
-      return [
+      const changeComp = [
         ...state.slice(0, editComp),
         {
           ...state[editComp],
@@ -59,6 +46,8 @@ const reducer = (state = initialState, action) => {
         },
         ...state.slice(editComp + 1)
       ]
+      localStorage.setItem('todo', JSON.stringify(changeComp))
+      return changeComp
     default:
       break
   }

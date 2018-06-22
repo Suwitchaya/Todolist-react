@@ -55,6 +55,7 @@ class EditTodo extends Component {
     this.props.editTodos(this.state)
     console.log('this.props.todos: ', this.props.todos)
     console.log('this.state: ', this.state)
+    this.props.history.push('/')
   }
   render () {
     return (

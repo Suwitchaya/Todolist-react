@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 // import axios from 'axios'
 import { Link } from 'react-router-dom'
+import DatePicker from 'react-date-picker'
 import { connect } from 'react-redux'
 import { ADD_TODOLIST } from '../store/actions/actionTypes'
 import '../css/add.css'
 import List from './List'
-import DatePicker from 'react-date-picker'
 
 class AddTodo extends Component {
   constructor (props) {
@@ -17,7 +17,8 @@ class AddTodo extends Component {
       title: '',
       description: '',
       date: new Date(),
-      time: ''
+      time: '',
+      completed: 0
     }
   }
 
@@ -34,6 +35,7 @@ class AddTodo extends Component {
     this.props.addTodos(this.state)
     console.log('this.props.todos: ', this.props.todos)
     console.log('this.state: ', this.state)
+    this.props.history.push('/')
   }
   _onChange = (date) => {
     this.setState({ date })
